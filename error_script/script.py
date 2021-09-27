@@ -22,19 +22,19 @@ def sort_messages(file):
 
 def generate_csv(stats_types, error_types):
     #generate error csv file:
-    with open(os.path.join(sys.path[0], "error.csv"), "w") as csvf:
+    with open(os.path.join(sys.path[0], "error_message.csv"), "w") as csvf:
         writer = csv.writer(csvf)
         writer.writerow(["Error", "Count"])
         for item in error_types:
             writer.writerow([item[0], item[1]])
     #generate stats csv file 
-    with open(os.path.join(sys.path[0], "stats.csv"), "w") as csvf:
+    with open(os.path.join(sys.path[0], "user_statistics.csv"), "w") as csvf:
         writer = csv.writer(csvf)
         writer.writerow(["Username", "INFO", "ERROR"])
         for item in stats_types:
             writer.writerow([item[0], item[1]["INFO"], item[1]["ERROR"]])
 
-with open(os.path.join(sys.path[0], "syslog.txt"), "r") as file:
+with open(os.path.join(sys.path[0], "syslog.log"), "r") as file:
     #counts error types, and user stats. then collects them in respective dictionaries
     #returns two dictionaries stored in a list
     stats_error_dict = sort_messages(file)
